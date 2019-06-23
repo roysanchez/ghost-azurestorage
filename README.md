@@ -64,6 +64,7 @@ Add `storage` block to file `config.js` in each environment as below:
       "ghost-storage-azure": {
 	"connectionString": "YourConnectionStringHere",
 	"container": "YourOptionalContainerName",
+	"folder": "images",
 	"cdnUrl": "YourCDNEndpointDomain",
 	"useHttps" : "true", //Optional: CDN protocol. Defaults to http if omitted. Set to "true", to enable.
 	"useDatedFolder" : true //Optional: Defaults to false. Set to `true` to enable.
