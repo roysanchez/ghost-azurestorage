@@ -17,7 +17,10 @@ class AzureStorageAdapter extends BaseStorage {
     options.container = options.container || 'content';
     options.useHttps = options.useHttps == 'true';
     options.useDatedFolder = options.useDatedFolder || false;
-    options.folder = options.folder || "";
+    options.folder = options.folder || null;
+    if(options.folder) {
+      options.folder = options.folder + "/";
+    }
   }
 
   exists(filename) {
@@ -34,10 +37,10 @@ class AzureStorageAdapter extends BaseStorage {
     // Appends the dated folder if enabled
     if (options.useDatedFolder) {
       let date = new Date();
-      var uniqueName = options.folder + "/" + date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + date.getHours() + date.getMinutes() + "_" + image.name;
+      var uniqueName = options.folder + date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + date.getHours() + date.getMinutes() + "_" + image.name;
     }
     else {
-      var uniqueName = options.folder + "/" + image.name;
+      var uniqueName = options.folder + image.name;
     }
 
     return new Promise(function (resolve, reject) {
